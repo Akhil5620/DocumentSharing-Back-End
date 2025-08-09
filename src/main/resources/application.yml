@@ -1,0 +1,70 @@
+# Server Configuration
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+  tomcat:
+    max-http-post-size: 25MB
+    max-swallow-size: 25MB
+
+# MongoDB Configuration
+spring:
+  data:
+    mongodb:
+      uri:
+      database: document_sharing_db
+
+  # File Upload Configuration (Spring Boot built-in)
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 25MB
+      enabled: true
+      resolve-lazily: true
+
+  # Security Configuration
+  security:
+    user:
+      name: admin
+      password: admin123
+      roles: ADMIN
+
+# JWT Configuration
+jwt:
+  secret: your-super-secret-jwt-key-for-document-sharing-system-2024-with-extra-long-secret-key-to-meet-hs512-requirements
+  expiration: 86400000 # 24 hours in milliseconds
+
+# Azure Blob Storage Configuration
+azure:
+  storage:
+    connection-string:
+    container-name:
+    account-name:
+    account-key:
+
+# File Upload Configuration
+file:
+  upload:
+    max-size: 26214400 # 25MB
+    allowed-types: pdf,doc,docx,txt,csv,xlsx,jpg,jpeg,png,gif
+    temp-dir: /tmp/uploads
+
+# Logging Configuration
+logging:
+  level:
+    com.documentshare: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+# Swagger/OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+    config-url: /api/api-docs/swagger-config
+    url: /api/api-docs
